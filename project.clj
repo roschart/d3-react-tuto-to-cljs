@@ -7,9 +7,10 @@
   :min-lein-version "2.7.1"
 
   :dependencies [[org.clojure/clojure "1.8.0"]
-                 [org.clojure/clojurescript "1.9.229"]
+                 [org.clojure/clojurescript "1.9.542"]
                  [cljsjs/react "15.5.0-0"]
                  [cljsjs/react-dom "15.5.0-0"]
+                 [cljsjs/d3 "4.3.0-5"]
                  [sablono "0.8.0"]
                  [org.clojure/core.async  "0.3.442"
                   :exclusions [org.clojure/tools.reader]]]

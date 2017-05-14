@@ -1,10 +1,12 @@
 (ns d3-react-tuto-to-clj.core
   (:require
     [sablono.core :as sab]
-    [d3-react-tuto-to-clj.components.like-seymore :refer [like-seymore]]
     [d3-react-tuto-to-clj.components.chart :refer [chart random-data-set]]))
 
-(def app-state (atom {:data (random-data-set)}))
+(def app-state (atom
+                {:data (random-data-set)
+                 :width 600
+                 :height 300}))
 
 
 (enable-console-print!)

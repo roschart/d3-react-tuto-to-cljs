@@ -21,7 +21,7 @@
 (defn chart [data]
   (sab/html [:div
               [:h1 "Playing with D3 and clojure"]
-              (scatter-plot data)
               [:div {:class "controls"}
                 [:button {:class "btn randomize" :onClick #(swap! data update-in [:data] random-data-set)}
-                 "Randomize Data"]]]))
+                      "Randomize Data"]]
+              (scatter-plot data)]))
