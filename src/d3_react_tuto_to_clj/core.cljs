@@ -1,10 +1,16 @@
 (ns d3-react-tuto-to-clj.core
   (:require
     [sablono.core :as sab]
-    [d3-react-tuto-to-clj.components.like-seymore :refer [like-seymore]]
     [d3-react-tuto-to-clj.components.chart :refer [chart random-data-set]]))
 
-(def app-state (atom {:data (random-data-set)}))
+(def ^private config
+  {:width 600
+   :height 300
+   :repetitions 5
+   :max-range 100})
+
+(def app-state (atom {:data (random-data-set (:repetitions config)(:max-range config))}))
+
 
 
 (enable-console-print!)
@@ -21,7 +27,7 @@
 
 (defn render! []
   (.render js/ReactDOM
-           (chart app-state)
+           (chart app-state config)
            (.getElementById js/document "app")))
 
 (add-watch app-state :on-change (fn [_ _ _ _] (render!)))

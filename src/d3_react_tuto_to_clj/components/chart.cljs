@@ -2,26 +2,16 @@
   (:require [sablono.core :as sab]
             [d3-react-tuto-to-clj.components.scatter-plot :refer [scatter-plot]]))
 
-(def styles
-  {:width   500
-   :height  300
-   :padding 30})
-
-(def ^private numDataPoints 50)
-(def ^private rangeData 1000)
-
-(def ^private getRandomData (partial rand-int rangeData))
-
 
 (defn random-data-set
-  []
-  (repeatedly numDataPoints #(vector (getRandomData) (getRandomData))))
+  [r n]
+  (repeatedly r #(vector (rand-int n) (rand-int n))))
 
 
-(defn chart [data]
+(defn chart [data config]
   (sab/html [:div
               [:h1 "Playing with D3 and clojure"]
-              (scatter-plot data)
               [:div {:class "controls"}
-                [:button {:class "btn randomize" :onClick #(swap! data update-in [:data] random-data-set)}
-                 "Randomize Data"]]]))
+                [:button {:class "btn randomize" :onClick #(swap! data update-in [:data] (partial random-data-set (:repetitions config) (:max-range config)))}
+                      "Randomize Data"]]
+              (scatter-plot data config)]))
